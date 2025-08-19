@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+    <style>
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212; 
+            color: #ffffff; 
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 30px 0;
+            color: #ffffff;
+            font-size: 2.5em;
+        }
+
+        p {
+            max-width: 700px;
+            margin: 10px auto;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #ffb74d; 
+        }
+
+        ul {
+            list-style-type: none;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0;
+        }
+
+        li {
+            background: #1e1e1e; 
+            margin: 8px 0;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255,255,255,0.2);
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            margin: 20px auto;
+        }
+
+        a:hover {
+            color: #ffb74d;
+        }
+
+        li:empty {
+            text-align: center;
+            color: #bbbbbb;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ product.title }}</h1>
+
+    <p>{{ product.description }}</p>
+    <p><strong>Price:</strong> ${{ product.price }}</p>
+
+    <h3 style="text-align:center;">Attributes:</h3>
+    <ul>
+      {% for attr in attributes %}
+        <li><strong>{{ attr.attribute.name }}:</strong> {{ attr.value }}</li>
+      {% empty %}
+        <li>No attributes available.</li>
+      {% endfor %}
+    </ul>
+
+    <p style="text-align:center;"><a href="{% url 'product_list' %}">← Back to Products</a></p>
+</body>
+</html>

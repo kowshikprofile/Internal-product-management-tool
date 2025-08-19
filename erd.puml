@@ -1,0 +1,37 @@
+@startuml
+entity "Category" as category {
+    *id : int <<PK>>
+    --
+    name : string
+}
+
+entity "Attribute" as attribute {
+    *id : int <<PK>>
+    --
+    name : string
+    category_id : int <<FK>>
+}
+
+entity "Product" as product {
+    *id : int <<PK>>
+    --
+    name : string
+    category_id : int <<FK>>
+}
+
+entity "ProductAttributeValue" as pav {
+    *id : int <<PK>>
+    --
+    product_id : int <<FK>>
+    attribute_id : int <<FK>>
+    value : string
+}
+
+category ||--o{ product : has
+category ||--o{ attribute : defines
+product ||--o{ pav : describes
+attribute ||--o{ pav : values
+
+@enduml
+
+

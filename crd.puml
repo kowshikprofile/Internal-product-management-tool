@@ -1,0 +1,30 @@
+@startuml
+class Category {
+    +id : int
+    +name : string
+}
+
+class Attribute {
+    +id : int
+    +name : string
+    +category_id : int
+}
+
+class Product {
+    +id : int
+    +name : string
+    +category_id : int
+}
+
+class ProductAttributeValue {
+    +id : int
+    +product_id : int
+    +attribute_id : int
+    +value : string
+}
+
+Category "1" --> "*" Product
+Category "1" --> "*" Attribute
+Product "1" --> "*" ProductAttributeValue
+Attribute "1" --> "*" ProductAttributeValue
+@enduml
